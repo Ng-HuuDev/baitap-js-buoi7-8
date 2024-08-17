@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find First Prime</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Hàm kiểm tra số nguyên tố
+        function isPrime(n) {
+            if (n <= 1) return false;
+            if (n <= 3) return true;
+            if (n % 2 === 0 || n % 3 === 0) return false;
+            for (let i = 5; i * i <= n; i += 6) {
+                if (n % i === 0 || n % (i + 2) === 0) return false;
+            }
+            return true;
+        }
+
+        // Nhận số lượng phần tử của mảng từ người dùng
+        let size = parseInt(prompt("Nhập vào số lượng phần tử của mảng:"));
+        
+        if (isNaN(size) || size <= 0) {
+            alert("Số lượng phần tử không hợp lệ!");
+        } else {
+            let numberArray = [];
+            
+            // Nhận từng số từ người dùng
+            for (let i = 0; i < size; i++) {
+                let num = parseInt(prompt("Nhập số nguyên thứ " + (i + 1) + ":"));
+                if (!isNaN(num)) {
+                    numberArray.push(num);
+                } else {
+                    alert("Dữ liệu nhập vào không phải là số nguyên. Vui lòng nhập lại.");
+                    i--; // Để người dùng nhập lại số này
+                }
+            }
+
+            // Tìm số nguyên tố đầu tiên trong mảng
+            let firstPrime = -1; // Giá trị mặc định nếu không tìm thấy số nguyên tố
+            for (let num of numberArray) {
+                if (isPrime(num)) {
+                    firstPrime = num;
+                    break; // Dừng vòng lặp khi tìm thấy số nguyên tố đầu tiên
+                }
+            }
+
+            // Hiển thị kết quả
+            document.body.innerHTML += `<div id="output">Mảng: ${numberArray.join(', ')}</div>`;
+            document.body.innerHTML += `<div id="output">Số nguyên tố đầu tiên: ${firstPrime}</div>`;
+        }
+    </script>
+</body>
+</html>

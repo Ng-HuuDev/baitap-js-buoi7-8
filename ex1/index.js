@@ -18,12 +18,12 @@ function kiemTra() {
   //   var demSoChan = 0;
   var soChanCuoiCung = 0; // bai 5: Tìm số chẵn cuối cùng trong mảng. Nếu mảng không có giá trị chẵn thì trả về -1
 
-  //   var sapXepTang = iSoArr; // bai 7: Sắp xếp mảng theo thứ tự tăng dần
-  var soNguyenTo = 0; // bai 8: Tìm số nguyên tố đầu tiên trong mảng. Nếu mảng không có số nguyên tố thì trả về – 1.
+  var sapXepTang = []; // bai 7: Sắp xếp mảng theo thứ tự tăng dần
+  var soNguyenTo = iSoArr[index]; // bai 8: Tìm số nguyên tố đầu tiên trong mảng. Nếu mảng không có số nguyên tố thì trả về – 1.
   var demSoNguyen = 0; //  bai 9: Nhập thêm 1 mảng số thực, tìm xem trong mảng có bao nhiêu số nguyên?
   // xu ly
   for (var index = 0; index < iSoArr.length; index++) {
-    // var value = iSoArr[index];
+    var value = iSoArr[index];
     if (iSoArr[index] > 0) {
       demSoDuong++;
       tongSoDuong += iSoArr[index];
@@ -50,12 +50,23 @@ function kiemTra() {
     //   return a - b;
     // });
 
-    // if (iSoArr[index] % soNguyenTo == 0 && iSoArr[index] % 1 == 0) {
-    //   soNguyenTo = iSoArr[index];
-    //   break;
-    // } else {
-    //   soNguyenTo = -1;
-    // }
+    // sapXepTang = iSoArr.sort((a, b) => a - b);
+    var soHang = 1;
+    var dem = 0;
+
+    while (soHang <= iSoArr[index]) {
+      if (iSoArr[index] % soHang == 0) {
+        dem++;
+      }
+      soHang++;
+
+      if (dem == 2) {
+        soNguyenTo = iSoArr[index];
+        // break;
+      } else {
+        soNguyenTo = -1;
+      }
+    }
   }
 
   // xuat ra man hinh
@@ -65,9 +76,10 @@ function kiemTra() {
    <p class="alert alert-info mt-3 w-75">Bài 1: Tổng các số dương: ${tongSoDuong} </p>
    <p class="alert alert-info mt-3 w-75">Bài 2: Các số dương: ${demSoDuong} </p>
    <p class="alert alert-info mt-3 w-75">Bài 3: Số nhỏ nhất: ${soNhoNhat} </p>
-    <p class="alert alert-info mt-3 w-75">Bài 4: Số dương nhỏ nhất: ${soDuongNhoNhat} </p>
-    <p class="alert alert-info mt-3 w-75">Bài 5: Số chẵn cuối cùng: ${soChanCuoiCung} </p>
-    // <p class="alert alert-info mt-3 w-75">Bài 8: Số nguyên tố đầu tiên: ${soNguyenTo} </p>
+  <p class="alert alert-info mt-3 w-75">Bài 4: Số dương nhỏ nhất: ${soDuongNhoNhat} </p>
+  <p class="alert alert-info mt-3 w-75">Bài 5: Số chẵn cuối cùng: ${soChanCuoiCung} </p>
+  <p class="alert alert-info mt-3 w-75">Bài 7: Sắp xếp tăng: ${sapXepTang} </p>
+  <p class="alert alert-info mt-3 w-75">Bài 8: Số nguyên tố đầu tiên: ${soNguyenTo} </p>
    `;
 }
 document.getElementById("kiemTra").addEventListener("click", kiemTra);
