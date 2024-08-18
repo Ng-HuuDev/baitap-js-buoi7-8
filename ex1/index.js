@@ -21,6 +21,9 @@ function kiemTra() {
   var sapXepTang = []; // bai 7: Sắp xếp mảng theo thứ tự tăng dần
   var soNguyenTo = iSoArr[index]; // bai 8: Tìm số nguyên tố đầu tiên trong mảng. Nếu mảng không có số nguyên tố thì trả về – 1.
   var demSoNguyen = 0; //  bai 9: Nhập thêm 1 mảng số thực, tìm xem trong mảng có bao nhiêu số nguyên?
+  var demSoAm = 0; //  Bai 10. So sánh số lượng số dương và số lượng số âm xem số nào nhiều hơn.
+  var soSanh = "";
+
   // xu ly
   for (var index = 0; index < iSoArr.length; index++) {
     var value = iSoArr[index];
@@ -41,6 +44,7 @@ function kiemTra() {
 
     if (iSoArr[index] % 2 == 0) {
       soChanCuoiCung = iSoArr[index];
+      // break;
     } else {
       soChanCuoiCung = -1;
     }
@@ -59,13 +63,22 @@ function kiemTra() {
         dem++;
       }
       soHang++;
-
       if (dem == 2) {
         soNguyenTo = iSoArr[index];
-        // break;
-      } else {
+      }
+      // break;
+      else {
         soNguyenTo = -1;
       }
+      break;
+    }
+    if (iSoArr[index] < 0) {
+      demSoAm++;
+    }
+    if (demSoAm < demSoDuong) {
+      soSanh = "Số âm ít hơn số dương";
+    } else {
+      soSanh = "Số âm nhiều hơn số dương";
     }
   }
 
@@ -80,6 +93,7 @@ function kiemTra() {
   <p class="alert alert-info mt-3 w-75">Bài 5: Số chẵn cuối cùng: ${soChanCuoiCung} </p>
   <p class="alert alert-info mt-3 w-75">Bài 7: Sắp xếp tăng: ${sapXepTang} </p>
   <p class="alert alert-info mt-3 w-75">Bài 8: Số nguyên tố đầu tiên: ${soNguyenTo} </p>
+  <p class="alert alert-info mt-3 w-75">Bài 10: ${soSanh} </p>
    `;
 }
 document.getElementById("kiemTra").addEventListener("click", kiemTra);
